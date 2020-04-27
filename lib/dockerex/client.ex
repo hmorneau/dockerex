@@ -22,7 +22,7 @@ defmodule Dockerex.Client do
     Logger.debug("Sending GET request to the Docker HTTP API: #{resource}")
 
     (host <> resource)
-    |> HTTPoison.get!(headers, Keyword.merge(options, opt))
+    |> HTTPoison.get!(Map.merge(headers, default_headers), Keyword.merge(options, opt))
     |> decode_body
   end
 
@@ -34,7 +34,7 @@ defmodule Dockerex.Client do
     data = Poison.encode!(data)
 
     (host <> resource)
-    |> HTTPoison.post!(data, headers, Keyword.merge(options(), opt))
+    |> HTTPoison.post!(data, Map.merge(headers, default_headers), Keyword.merge(options(), opt))
     |> decode_body
   end
 
@@ -45,7 +45,7 @@ defmodule Dockerex.Client do
     Logger.debug("Sending DELETE request to the Docker HTTP API: #{resource}")
 
     (host <> resource)
-    |> HTTPoison.delete!(headers, Keyword.merge(options, opt))
+    |> HTTPoison.delete!(Map.merge(headers, default_headers), Keyword.merge(options, opt))
   end
 
   defp decode_body(%HTTPoison.Response{body: ""}) do
