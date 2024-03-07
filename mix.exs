@@ -2,14 +2,16 @@ defmodule Dockerex.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :dockerex,
-     version: "0.1.1",
-     elixir: "~> 1.3",
-     description: "A lightweight Docker api client that supports SSL connection.",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     package: package(),
-     deps: deps()]
+    [
+      app: :dockerex,
+      version: "0.1.2",
+      elixir: "~> 1.3",
+      description: "A lightweight Docker api client that supports SSL connection.",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      package: package(),
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -37,9 +39,10 @@ defmodule Dockerex.Mixfile do
   end
 
   defp package do
-    [licenses: ["MIT"],
-     maintainers: ["Yinghai Zhao"],
-     links: %{"GitHub" => "https://github.com/hisea/dockerex"}]
+    [
+      licenses: ["MIT"],
+      maintainers: ["Yinghai Zhao"],
+      links: %{"GitHub" => "https://github.com/hisea/dockerex"}
+    ]
   end
-
 end
